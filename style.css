@@ -1,200 +1,297 @@
+/* Zera as margens e o padding de todos os elementos */
 * {
-    padding: 0;
-    margin: 0;
-  }
-  body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background: #161616;
-  }
-  .menu {
-    position: relative;
-    width: 260px;
-    height: 260px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .menu li {
-    position: absolute;
-    left: 0;
-    list-style: none;
-    transform: rotate(0deg) translateX(100px);
-    transform-origin: 130px;
-    transition: 0.5s;
-    transition-delay: calc(0.1s * var(--i));
-  }
-  .menu.active li {
-    transform: rotate(calc(360deg / 8 * var(--i)));
-  }
-  .menu a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 60px;
-    height: 60px;
-    text-decoration: none;
-    font-size: 22px;
-    border-radius: 50%;
-    transform: rotate(calc(360deg / -8 * var(--i)));
-    transition: 1s;
-    color: transparent;
-    transition-delay: 0.5s;
-    filter: drop-shadow(0 0 2px var(--clr));
-  }
-  .menu.active a {
-    color: var(--clr);
-  }
-  .menu a::before {
-    content: "";
-    position: absolute;
-    width: 20px;
-    height: 2px;
-    border-radius: 2px;
-    background: var(--clr);
-    transform: rotate(calc(90deg * var(--i))) translate(0, 25px);
-    transition: width 0.5s, height 0.5s, transform 0.5s;
-    transition-delay: 0.5s, 1s, 1.5s;
-  }
-  .menu.active a::before {
-    width: 50px;
-    height: 50px;
-    background: #161616;
-    border: 2px solid var(--clr);
-    transform: rotate(calc(0 * var(--i)));
-    transition: transform 0.5s, height 0.5s, width 0.5s;
-    transition-delay: 0.5s, 1.5s, 1.5s;
-    border-radius: 10px;
-    filter: drop-shadow(0 0 5px var(--clr));
-    rotate: 135deg;
-  }
-  .menu.active li:hover a::before {
-    background: var(--clr);
-  }
-  .menu.active li:hover a ion-icon {
-    color: #161616;
-  }
-  
-  .menuToggle {
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 100;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 32px;
-    transition: 1.5s;
-  }
-  .menu.active .menuToggle {
-    transform: rotate(315deg);
-  }
-
-  /* Botao gamer*/
-
-.dpdefect:hover {
-  background-color: #8d1d1d;
-
-  transition: 0.1s;
+  padding: 0;
+  margin: 0;
 }
 
-.nav-item {
-  font-size: 20px;
-  margin-left: 15px;
-  ;
+/* Estilo do contêiner que agrupa o texto e o menu */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.mrg {
-  margin-right: 50px;
+.profile {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-bottom: 20px;
 }
 
-.mouse-efeito-navbar:hover {
-  color: #fff;
+/* Estilo para o texto "teste" */
+.profile img {
+  filter: drop-shadow(0 0 10px var(--clr));
+  border-radius: 5%;
+  /* Espaçamento entre o texto e o menu */
 }
 
-.button-gamer {
-  border: none;
-  outline: none;
-  color: #fff;
-  background-color: #111;
-  cursor: pointer;
+.profile h1, p{
+  font-family: Arial, Helvetica, sans-serif;
+  color: gray;
+  text-align: left;
+  margin-left: 20px;
+}
+
+/* Estilos gerais do corpo da página */
+body {
+  display: flex;
+  align-items: center;
+  /* Centraliza verticalmente */
+  justify-content: center;
+  /* Centraliza horizontalmente */
+  height: 100vh;
+  /* Altura da página igual à altura da viewport */
+  background: #161616;
+  /* Cor de fundo da página */
+}
+
+/* Estilos do menu circular */
+.menu {
   position: relative;
-  z-index: 0;
-  border-radius: 8px;
+  width: 260px;
+  height: 260px;
+  display: flex;
+  align-items: center;
+  /* Centraliza o conteúdo do menu verticalmente */
+  justify-content: center;
+  /* Centraliza o conteúdo do menu horizontalmente */
 }
 
-.button-gamer:before {
-  content: '';
-  background: linear-gradient(45deg, #ff0000, #8d5222, #fffb00, #1d5706, #00ffd5,
-          #002bff, #7a00ff, #ff00c8, #ff0000);
+/* Estilos dos itens do menu */
+.menu li {
   position: absolute;
-  top: -2px;
-  left: -2px;
-  background-size: 400%;
-  z-index: -1;
-  filter: blur(5px);
-  width: calc(100% + 4px);
-  height: calc(100% + 4px);
-  animation: glowing 20s linear infinite;
-  opacity: 0;
-  transition: opacity .3s ease-in-out;
-  border-radius: 10px;
-}
-
-.button-gamer:active {
-  color: #000
-}
-
-.button-gamer:active:after {
-  background: transparent;
-}
-
-.button-gamer:hover:before {
-  opacity: 1;
-}
-
-.button-gamer:after {
-  z-index: -1;
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #111;
   left: 0;
-  top: 0;
+  list-style: none;
+  /* Remove os marcadores de lista padrão */
+  transform: rotate(0deg) translateX(100px);
+  /* Inicialmente posiciona os itens */
+  transform-origin: 130px;
+  /* Define o ponto de rotação dos itens */
+  transition: 0.5s;
+  /* Suaviza as transições de transformação */
+  transition-delay: calc(0.1s * var(--i));
+  /* Aplica um atraso de transição com base na posição do item */
+}
+
+/* Estilos para quando o menu está ativo */
+.menu.active li {
+  transform: rotate(calc(360deg / 8 * var(--i)));
+  /* Distribui os itens em torno de um círculo */
+}
+
+/* Estilos dos links dentro dos itens do menu */
+.menu a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  text-decoration: none;
+  /* Remove o sublinhado dos links */
+  font-size: 22px;
+  /* Tamanho dos ícones */
+  border-radius: 50%;
+  /* Formata o link como um círculo */
+  transform: rotate(calc(360deg / -8 * var(--i)));
+  /* Corrige a rotação dos ícones para ficarem na posição correta */
+  transition: 1s;
+  /* Suaviza a transição de cor e transformação */
+  color: transparent;
+  /* Inicialmente deixa os ícones invisíveis */
+  transition-delay: 0.5s;
+  /* Adiciona um atraso à transição de cor */
+  filter: drop-shadow(0 0 2px var(--clr));
+  /* Adiciona uma sombra aos ícones */
+}
+
+/* Estilos para quando o menu está ativo */
+.menu.active a {
+  color: var(--clr);
+  /* Aplica a cor dos ícones baseada na variável de cor */
+}
+
+/* Estilos antes dos links, para os traços */
+.menu a::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  /* Largura dos traços */
+  height: 2px;
+  /* Altura dos traços */
+  border-radius: 2px;
+  /* Bordas arredondadas dos traços */
+  background: var(--clr);
+  /* Cor dos traços */
+  transform: rotate(calc(90deg * var(--i))) translate(0, 30px);
+  /* Posiciona os traços em relação ao círculo */
+  transition: width 0.5s, height 0.5s, transform 0.5s;
+  transition-delay: 0.5s, 1s, 1.5s;
+}
+
+/* Estilos para os traços quando o menu está ativo */
+.menu.active a::before {
+  width: 50px;
+  /* Aumenta a largura dos traços */
+  height: 50px;
+  /* Aumenta a altura dos traços */
+  background: #161616;
+  /* Cor de fundo dos traços */
+  border: 5px solid var(--clr);
+  /* Aplica uma borda aos traços */
+  transform: rotate(calc(0 * var(--i)));
+  /* Remove a rotação adicional */
+  transition: transform 0.5s, height 0.5s, width 0.5s;
+  transition-delay: 0.5s, 1.5s, 1.5s;
   border-radius: 10px;
+  /* Arredonda as bordas dos traços */
+  filter: drop-shadow(0 0 5px var(--clr));
+  /* Adiciona uma sombra mais intensa aos traços */
+  rotate: 135deg;
+  /* Rotaciona os traços */
 }
 
-@keyframes glowing {
-  0% {
-      background-position: 0 0;
+/* Efeito de esconder sobre os links quando o menu está aberto */
+.menu.active li:hover a::before {
+  background: var(--clr);
+  /* Muda a cor de fundo dos traços ao passar o mouse */
+}
+
+/* Efeito de esconder sobre os links quando o menu está aberto */
+.menu.active li:hover a ion-icon {
+  color: #161616;
+  /* Muda a cor dos ícones ao passar o mouse */
+}
+
+/* Estilos para o botão de toggle do menu */
+.menuToggle {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  color: #fff;
+  /* Cor do ícone */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  /* Garante que o botão esteja acima de outros elementos */
+  border-radius: 50%;
+  /* Formato de círculo para o botão */
+  cursor: pointer;
+  /* Mostra o cursor de pointer ao passar o mouse */
+  font-size: 32px;
+  /* Tamanho do ícone do botão */
+  transition: 1.5s;
+  /* Suaviza a rotação do botão */
+}
+
+/* Estilo do botão quando o menu está ativo */
+.menu.active .menuToggle {
+  transform: rotate(315deg);
+  /* Rotaciona o botão ao abrir o menu */
+}
+
+/* Botao gamer {
+  .dpdefect:hover {
+    background-color: #8d1d1d;
+
+    transition: 0.1s;
   }
 
-  50% {
+  .nav-item {
+    font-size: 20px;
+    margin-left: 15px;
+    ;
+  }
+
+  .mrg {
+    margin-right: 50px;
+  }
+
+  .mouse-efeito-navbar:hover {
+    color: #fff;
+  }
+
+  .button-gamer {
+    border: none;
+    outline: none;
+    color: #fff;
+    background-color: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 8px;
+  }
+
+  .button-gamer:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #8d5222, #fffb00, #1d5706, #00ffd5,
+        #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+  }
+
+  .button-gamer:active {
+    color: #000
+  }
+
+  .button-gamer:active:after {
+    background: transparent;
+  }
+
+  .button-gamer:hover:before {
+    opacity: 1;
+  }
+
+  .button-gamer:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+  }
+
+
+  @keyframes glowing {
+    0% {
+      background-position: 0 0;
+    }
+
+    50% {
       background-position: 400% 0;
-  }
+    }
 
-  100% {
+    100% {
       background-position: 0 0;
+    }
   }
-}
 
-.rgb:hover {
-  background-image:
+  .rgb:hover {
+    background-image:
       linear-gradient(to right, #ff0000, #8d5222, #fffb00, #1d5706, #00ffd5,
-      #002bff, #7a00ff, #ff00c8, #ff0000);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: rainbow-animation 400s linear infinite;
-}
-
-@keyframes rainbow-animation {
-  to {
-      background-position: 4500vh;
+        #002bff, #7a00ff, #ff00c8, #ff0000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rainbow-animation 400s linear infinite;
   }
-}
+
+  @keyframes rainbow-animation {
+    to {
+      background-position: 4500vh;
+    }
+  }
+} */
